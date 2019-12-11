@@ -1,0 +1,41 @@
+\begin{titlepage}
+  \centering
+
+  \IfFileExists{logos/ntnulogo.pdf}{%
+    \includegraphics[height=13mm]{logos/ntnulogo.pdf}
+  }{%
+    \vspace*{20mm}
+  }
+
+  \vspace{5mm}
+  {\large\MakeUppercase{\getUniversity{}}}\\
+
+  \vspace{10mm}
+  {\large\MakeUppercase{\getFaculty{}}}\\
+  \vspace{3mm}
+
+
+
+  \vspace{20mm}
+  {\Large \getDoctype{}}
+
+  \makeatletter
+  \vspace{15mm}
+  \ifthenelse{\pdf@strcmp{\languagename}{english}=0}
+  {
+
+
+
+  \vspace{10mm}
+  {\huge\bfseries \foreignlanguage{english}{\getTitle{}}}
+  }
+  \makeatother
+
+ \vspace{15mm}
+  \begin{tabular}{l l}
+    Author:          & \getAuthor{} \\
+    %Advisor:         & \getAdvisor{} \\
+    Submission Date: & \getSubmissionDate{} \\
+  \end{tabular}
+
+\end{titlepage}

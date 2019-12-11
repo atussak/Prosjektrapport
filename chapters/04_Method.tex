@@ -1,0 +1,43 @@
+\chapter{Method}\label{ch:method}
+
+%---------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------
+
+\section{System flow}
+
+The system flow is shown in figure \ref{fig:prog_flow}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/progflyt.PNG}
+    \caption{Program flow diagram}
+    \label{fig:prog_flow}
+\end{figure}
+
+%---------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------
+
+\section{Calculation of snake robot movement}
+
+eom -> computed torque control -> find qdd -> find qd -> finn ut om det er kontakt (geometri) ->  
+
+
+
+%---------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------
+
+\section{Simplifications}
+
+Expressing the complete dynamics of the system includes explicitly finding the part of the joint torques that are not directly applied to the robot joints, but rather as a force acting on the external obstacles.
+
+Kreftene er i noen tilfeller entydige og andre ikke (altså om tau=JTf kun påvirker hindringer? for det er jo sjelden). Det som er tricky er å separere tau i den delen som ligger i constraint space og den delen som aksellererer masse (endrer shape). Kunne man brukt Paf til å finne den delen som er i constraint space??????? 
+
+En mulighet er å finne bevegelsesligningene for constrained motion som Yukomannen, men han har abstrahert seg bort fra en del av de kontaktkreftene så de må beregnes eksplisitt. Constraint bev-ligningene er i stand til å forklare den bevegelsen man faktisk får. Begge bev.lignningene gjelder, det er bare at Yukomannen har abstrahert seg bort fra kontaktkreftene ved å si at den bevegelsen kan ikke gå dit men dit. Men det som aksellererer (kreftene) er ikke eksplisitt uttrykt. De er kun uttrykkt med en q prikk prikk pluss C q prikk. Det er litt som kreftene mellom leddene i roboten. Det er krefter der og vi definerer dem aldri eksplisitt (fordi de deltar ikke i energiproduksjon), men de er jo implisitt med i modellen til alle tider. Litt samme jeg har gjort - gått bort fra eksplisitt forhold til kreftene fordi føringskreftene er gitt av kinematikken (et sett med constraints)
+
+Har tatt et valg om å gjøre det på en annen måte. Tidspress. Går ut i fra en bev.ligning som går ut i fra ingen constraints. Og M og C merker ikke constraints fordi vi ikke måler q osv.
+
+
+\hl{Ref til teori}\\
+Finding the exact force between the rigid bodies when the snake can rotate and move freely in space is no trivial task \hl{Because we have uncontrollable/passive joints?}. This challenge has led to a simplification in the development of the simulator. Instead of explicitly including the external force in the dynamics, the movement of the robot is simulated for one time step under the assumption that no obstacle is present. The resulting joint velocities are then projected onto the allowable position space restricted by the obstacles. The time step of impact between the bodies is thus skipped.
+
+The projection is performed by taking the intersect of all $\mathbf{\prescript{j}{ap}{P}}$ introduced in (\ref{eq:proj_mtrices}).

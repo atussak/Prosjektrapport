@@ -1,0 +1,34 @@
+% !TeX root = ../main.tex
+% Add the above to each chapter to make compiling the PDF easier in some editors.
+
+\chapter{Introduction}\label{chapter:introduction}
+
+\section{Previous work}
+The department of engineering cybernetics at the Norwegian University of Science and Technology (NTNU) has made significant contributions to the field of snake robot control, related to both aquatic snake-like propulsion and efficient snake robot locomotion on flat surfaces \cite{StavdahlNote}.
+
+Snakes can also, however, utilize irregularities in a terrain. Consequently, Transeth et al. suggested the term \textit{Obstacle Aided Locomotion (OAL)} for snake robots that actively use walls or external objects for means of propulsion \cite{transeth2008snake}.
+
+A relevant concept for attainment of this type of propulsion is \textit{Hybrid Position/Force Control (HPFC)}. This concept was first introduced by Raibert and Craig in 1981 \cite{raibert1981hybrid}. West and Asada \cite{west1985method} further proposed a method for the design of HPFC controllers in 1985 for constrained manipulators which are in contact with the environment at multiple points. This method aims at controlling the position and force at the manipulator joints with kinematics-based projections such that the motion at the end effector, and the force at the contacts with the environment are those required for performing the task. Yoshikawa \cite{yoshikawa1987dynamic} advanced the constraint analysis by taking the dynamics into consideration.
+
+
+Stavdahl \cite{StavdahlNote} proposed the combination of OAL and HPFC, leading to the term \textit{Hybrid Obstacle Aided Locomotion (HOAL)}. \\
+
+\section{Scope of the project}
+The goal of this project is to establish a suitable and simplified 2-dimensional model of the idealized robot and its environment. A simulator is then to be developed based on this model and the concepts of OAL and HPFC. The purpose of the simulator is from the project task interpreted to be a platform for showing the aforementioned concepts on snake robots, rather than data generation for physical purposes.
+Seeing as HOAL still is a fresh area of research and has little solid/particular/concrete theoretical backdrop, this work goes in the direction of a proof-of-concept.
+
+\subsection{Simplifications}
+Due to the strict time constraints of this project and somewhat vague outlines, simplification have been made to provide for a specific end goal. The simulator is restricted to handle bounded and well-defined scenarios with slow dynamics. Furthermore, the calculation of interaction forces in the simulator is neglected in favor of an easier discrete projection method that only takes joint velocities into consideration. This method is explained in further detail in chapter \ref{ch:method} and discussed in chapter \ref{ch:discussion}. The simplifications have led to ....... 
+All assumptions regarding the employed model can be found in chapter \ref{ch:model_specs}.
+
+\subsection{Contributions}
+A lot of the contributions connected to the limited research environment of HOAL has been clarification of the associated formulations and theoretical aspects. Additionally, a simulator for demonstration of simple and germane HOAL-scenarios has been provided.
+
+
+
+\section{Report structure}
+It is assumed that the reader is already familiar with basic physics-, robotics- and control theory. Please see \hl{blabla sources} for a more thorough explanation of the topics.
+
+The report first introduces the specifics around the mathematical model used for the snake robot and its environment and task. Further, a review of the required background theory for understanding the dynamical model and control of the snake robot is presented. The remaining part of the report is focused on the simulator and method used for achieving OAL. Significant parts of the simulator are explained in detail and a guide for usage is provided. 
+
+
