@@ -26,6 +26,7 @@
 \usepackage{lstautogobble}
 \usepackage{placeins}
 %\usepackage{subcaption}
+
 \usepackage{subfig}
 \captionsetup{compatibility=false}
 \usepackage{tikz}
@@ -71,9 +72,9 @@
 
 % https://tex.stackexchange.com/questions/42619/x-mark-to-match-checkmark
 \usepackage{amssymb}% http://ctan.org/pkg/amssymb
-\usepackage{pifont}% http://ctan.org/pkg/pifont
-\newcommand{\cmark}{\ding{51}}%
-\newcommand{\xmark}{\ding{55}}%
+%\usepackage{pifont}% http://ctan.org/pkg/pifont
+%\newcommand{\cmark}{\ding{51}}%
+%\newcommand{\xmark}{\ding{55}}%
 
 \usepackage{caption}
 %\usepackage{subcaption}
@@ -93,11 +94,11 @@
 
 
 % Settings for pgfplots
-\pgfplotsset{compat=newest}
-\pgfplotsset{
+%\pgfplotsset{compat=newest}
+%\pgfplotsset{
   % For available color names, see http://www.latextemplates.com/svgnames-colors
-  cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
-}
+  %cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
+%}
 
 % Settings for lstlistings
 
@@ -135,7 +136,7 @@ ex-am-ple
 %\newcommand{\todo}[1]{\textbf{\textsc{\textcolor{TUMAccentOrange}{(TODO: #1)}}}} % for one paragraph, otherwise error!
 %\newcommand{\done}[1]{\textit{\textsc{\textcolor{TUMAccentBlue}{(Done: #1)}}}} % for one paragraph, otherwise error!
 % and
-\newcommand{\todo}[1]{{\bfseries{\scshape{\color{TUMAccentOrange}[(TODO: #1)]}}}} % for multiple paragraphs
+%\newcommand{\todo}[1]{{\bfseries{\scshape{\color{TUMAccentOrange}[(TODO: #1)]}}}} % for multiple paragraphs
 \newcommand{\done}[1]{{\itshape{\scshape{\color{TUMAccentBlue}[(Done: #1)]}}}} % for multiple paragraphs
 % for error handling of intended behavior in your latex documents.
 

@@ -21,7 +21,6 @@ Jcd = sym('Jc%d', [2 N]);
 
 
 for link = 1:n % For every link an obstacle can be in contact with
-    % Calculate distances from base
     T = D_func(q(n+1),q(n+2));
     for curr_link = 1:link-1
         T = T*Rz_func(q(curr_link))*D_func(l,0);
@@ -29,7 +28,6 @@ for link = 1:n % For every link an obstacle can be in contact with
     T = T*Rz_func(q(link))*D_func(q(n+2+link));
     x = T(1,4);
     y = T(2,4);
-    % Differentiate wrt. the generalized coordinates
     for i = 1:N
         Jc(1,i) = diff(x, q(i));
         Jc(2,i) = diff(y, q(i));

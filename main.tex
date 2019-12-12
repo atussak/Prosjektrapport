@@ -48,16 +48,21 @@
 \input{pages/sammendrag.tex}
 \input{pages/preface}
 \input{pages/nomenclature.tex}
-\printnomenclature
+
 
 \microtypesetup{protrusion=false}
 \tableofcontents{}
+\printnomenclature
+
+\listoffigures{}
+\listoftables{}
 \microtypesetup{protrusion=true}
+
 
 \mainmatter{}
 
 
-% TODO: add more chapters here
+% Chapters
 \input{chapters/01_introduction.tex}
 \input{chapters/02_modelspecs.tex}
 \input{chapters/03_Theory.tex}
@@ -68,14 +73,9 @@
 
 
 %\appendix{}
-
-% TODO: appendix chapter
 %\input{pages/appendix}
 
-\microtypesetup{protrusion=false}
-\listoffigures{}
-\listoftables{}
-\microtypesetup{protrusion=true}
+
 \printglossaries
 \printbibliography{}
 

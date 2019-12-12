@@ -1,21 +1,33 @@
 \chapter{Discussion} \label{ch:discussion}
 
-The simplification made regarding the contact forces between the robot and the obstacles have been characteristic for the outcome of the simulations. First of all, it might not yield unique solutions, leading to unpredictable or unrealistic behavior in some scenarios. Additionally, it has been shown that it can end up moving slightly over the edge of some obstacles in cases where there are many constraints.
+\section{Effect of simplifications}
 
-Another consequence of this geometrical approximation, is that the projection matrices only allow movement along obstacles. This is necessary for preventing the robot in moving through obstacles, but also prevents the robot from perpendicularly moving away from them. In other words, whenever a link comes in contact with an obstacle, it will stick to it until it has slid along it. This strict positioning of the links can come in conflict with the controller and lead to behaviors like in case 2.3, where the rear part of the robot was completely off track when leaving the obstacles.
-
-A workaround for the rigid definition of contact, in which the robot is either completely in contact with the obstacle or not at all, could be to introduce an elastic radius or force field around the obstacles, damping the nonlinear effects of the interactions. %PD controller
-
-On the other hand, it is clear that the simulation has proven to be a great resource for presenting concepts and study the possibilities within obstacle aided locomotion.
+The geometrical approximation made regarding the contact forces between the robot and the obstacles have been characteristic for the outcome of the simulations. Firstly, it might not yield unique solutions, leading to unpredictable or unrealistic behavior in some scenarios. Secondly, it has been observed that the robot in some cases ends up moving slightly over the edge of obstacles when there are several "conflicting" constraints.
 
 There are of course several methods that could have avoided this simplification.
 One option would be to implicitly define the forces as a part of the dynamical model, in the same way as the forces between the joints in the robot are implicitly defined. The method of Yoshikawa \cite{yoshikawa1987dynamic}, explained in \ref{subseq:dynhpfc}, follows this approach. It does however only consider constraints on the end effector of the robot, and not on arbitrary links. \hl{right?}
 
-The experiments have shown that the positioning of the obstacles and path in relation to each other is vital for the propulsion of the robot. This is especially the case in an environment where the possibility to aid friction for propulsion is absent. Furthermore, it has been shown that it is necessary to have a sufficient number of obstacles as well. Not only for the propulsion, but also for continuously aiding the robot with alignment along the path. Consequently, a limitation of the implemented system is that the configuration of obstacles and desired path need to be determined manually.
+\hl{Could we have used Paf to find the component belonging to the constraint++ space???}
 
+Another consequence of the geometrical approximation, is that the projection matrices only allow movement along obstacles. This is necessary for preventing the robot in moving through obstacles, but also prevents the robot from perpendicularly moving away from them. In other words, whenever a link comes in contact with an obstacle, it will stick to it until it has slid along it. This strict positioning of the links can come in conflict with the controller and lead to behaviors like in case 2.3, where the rear part of the robot was completely off track when leaving the obstacles. The only case in which a link "detaches" from the obstacle before sliding along it, is when it in  a discrete time step is projected to no longer be in contact with it and stays in this state.
 
-Limitations of HPFC in snake robots.
+A workaround for the rigid definition of contact, in which the robot is either completely in contact with the obstacle or not at all, could be introducing an elastic radius or force field around the obstacles, damping the nonlinear effects of the interactions. %PD controller
+
+The method of finding the desired angles based on projection onto the path is not robust in cases where the links are far from the path. The simplest solution would be avoiding the projection if the snake is very misplaced. A future, more advanced, solution would be redefining the optimal path to overlap with the current position of the robot.
+
+\section{Insights from experiments}
+
+On the more constructive side, it is clear that the simulator has proven to be a great resource for presenting concepts and study the possibilities within obstacle aided locomotion. The modular architecture of the program, where controller, dynamics, path following etc. is decoupled, allows for it to be effortlessly modified.
+
+The experiments have shown that the positioning of the obstacles and path in relation to each other is vital for the propulsion of the robot. This is especially the case in an environment where the possibility to aid friction for propulsion is absent. Furthermore, it has been shown that it is necessary to have a sufficient number of obstacles. Not only for the propulsion, but also for continuously aiding the robot with alignment along the path. Consequently, a limitation of the implemented system is that the configuration of obstacles and desired path need to be determined manually.
+
+A further observation from the experiments, in particular case 2.3 in \ref{subseq:case23}, is that the obstacles used for aligning the rear part of the robot work in a similar fashion as a manipulator base. When the robot has little room for movement in perpendicular directions, its control over the proceeding links is greater. \hl{mhm?} This does in turn lead to the robot getting further with more links, as the manipulator base analogy is in place for a longer period.
 
 Symbolic math og utregning av alt med matriser og differensiering fra bunnen tar laaaang tid for mange links. --> metode i snake robots boka.
 
-robot må starte nær bane
+\section{HPFC in snake robots}
+
+Limitations of HPFC in snake robots.
+
+
+

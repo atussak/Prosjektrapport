@@ -547,7 +547,7 @@ Finally, knowledge about the specified spaces may be exploited in planning of a 
 %---------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------
 
-\section{Projection onto path}
+\section{Projection onto path}\label{sec:pathproj}
 In order for the robot to adjust its shape to fit the desired path, its controller is dependent on knowing the joint angles that fulfill this task. The desired joint angles are found by projecting the snake onto the predefined path. It is assumed that the 2D path is known at all times. Since the path has no width it is possible to simply find the shortest distance from a joint to the path to determine where the joint \textit{should have} been. This distance is called $BC$ and is illustrated in figure \ref{fig:path_proj}. The path can be discretized to consist of points along the lines and curves defining the path.
 
 \begin{figure}[h!]

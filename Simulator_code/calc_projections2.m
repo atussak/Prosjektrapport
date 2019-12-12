@@ -69,15 +69,13 @@ function [P_af, P_ap, contact, in_contact] = calc_projections(pos, k)
           in_contact(link) = true;
           num_contacts = num_contacts + 1;
           
-% Distance from joint to obstacle point projection:
-l_to_obs = ap;
+
+l_to_obs = ap; % Distance from joint to obstacle point projection:
 q(n+2+link,k) = l_to_obs;
-% Jacobian
 all_Jc = Jc_func(q(:,k)');
-Jc(:,:,i) = all_Jc(:,:,i); % extract the relevant contact Jacobian
+Jc(:,:,i) = all_Jc(:,:,i); % Extract the relevant contact Jacobian
 P_af = (pinv(Jc(:,:,i))*Jc(:,:,i))';
 P_ap = eye(N) - pinv(Jc(:,:,i))*Jc(:,:,i);
-% Stack projection matrices
 S_P_af = [S_P_af P_af];
 S_P_ap = [S_P_ap P_ap];
       end

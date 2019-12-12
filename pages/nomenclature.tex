@@ -2,17 +2,25 @@
 
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
-  \ifstrequal{#1}{M}{Mathematical symbols}{%
+  \ifstrequal{#1}{R}{Robot symbols}{%
+  \ifstrequal{#1}{C}{Control symbols}{%
   \ifstrequal{#1}{N}{Spaces}{%
-  \ifstrequal{#1}{O}{Other Symbols}{}}}%
+  \ifstrequal{#1}{O}{Other Symbols}{}}}}%
 ]}
 
 
 \renewcommand{\nompreamble}{The following list describes several symbols that will be later used within the body of the report.}
 
-\nomenclature[M, 01]{$\mathbf{q}$}{Generalized coordinates}
-\nomenclature[M, 02]{$\boldsymbol{\tau}$}{Generalized torques}
+\nomenclature[R, 01]{$n$}{Number of links}
+\nomenclature[R, 02]{$N$}{Number of generalized coordinates}
+\nomenclature[R, 03]{$m$}{Link mass}
+\nomenclature[R, 04]{$l$}{Link length}
 
-\nomenclature[M, 03]{$\mathbf{J}$}{Jacobian matrix}
-\nomenclature[M, 04]{$\mathbf{J_c}$}{Jacobian matrix for contact point}
+\nomenclature[R, 05]{$\mathbf{q}$}{Generalized coordinates}
+\nomenclature[R, 06]{$\boldsymbol{\tau}$}{Generalized torques}
 
+\nomenclature[R, 07]{$\mathbf{J}$}{Jacobian matrix}
+\nomenclature[R, 08]{$\mathbf{J_c}$}{Jacobian matrix for contact point}
+
+\nomenclature[C, 01]{$K_p$}{Proportional gain}
+\nomenclature[C, 10]{$K_d$}{Derivative gain}
