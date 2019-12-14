@@ -51,6 +51,8 @@
 
 \usepackage{soul} % For highlighting text
 
+\usepackage{afterpage} % for inserting blank pages
+
 \usepackage{amsmath}
 
 \usepackage{nomencl} % Nomenclature
@@ -94,7 +96,7 @@
 
 
 % Settings for pgfplots
-%\pgfplotsset{compat=newest}
+\pgfplotsset{compat=newest}
 %\pgfplotsset{
   % For available color names, see http://www.latextemplates.com/svgnames-colors
   %cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
@@ -183,7 +185,7 @@ ex-am-ple
 \lstset{language=Matlab, 
 	keywords={break, case, catch, continue, else, elseif, end, for, function,
 		global, if, otherwise, persistent, return, switch, try, while},
-	basicstyle=\footnotesize, % scriptsize for mindre
+	basicstyle=\ttfamily\footnotesize, % scriptsize for mindre
 	keywordstyle=\color{blue},
 	commentstyle=\color{dkgreen},
 	stringstyle=\color{pink},

@@ -44,18 +44,21 @@
 \input{pages/title}
 %\input{pages/disclaimer}
 %\input{pages/acknowledgements} % TODO: if you don't have anyone to thank for or don't wish to publish it, comment this line out.
+%\afterpage{\null\newpage}
+\includepdf[pages={{}, 1, {}}]{pages/problem_formulation.pdf}
+%\afterpage{\null\newpage}
 \input{pages/abstract}
 \input{pages/sammendrag.tex}
 \input{pages/preface}
 \input{pages/nomenclature.tex}
 
+\listoffigures{}
+\listoftables{}
 
 \microtypesetup{protrusion=false}
 \tableofcontents{}
 \printnomenclature
 
-\listoffigures{}
-\listoftables{}
 \microtypesetup{protrusion=true}
 
 
