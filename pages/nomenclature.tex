@@ -1,15 +1,23 @@
 %\renewcommand{\nomname}{List of Symbols}
 
+%\renewcommand*{\nompreamble}{\footnotesize}
+
 \renewcommand\nomgroup[1]{%
+    \footnotesize
   \item[\bfseries
-  \ifstrequal{#1}{R}{Robot symbols}{%
-  \ifstrequal{#1}{C}{Control symbols}{%
-  \ifstrequal{#1}{N}{Spaces}{%
-  \ifstrequal{#1}{O}{Other Symbols}{}}}}%
+  \ifstrequal{#1}{R}{\small Robot kinematics symbols}{%
+  \ifstrequal{#1}{D}{\small Robot dynamics symbols}{%
+  \ifstrequal{#1}{C}{\small Control symbols}{%
+  \ifstrequal{#1}{S}{\small Spaces}{%
+  \ifstrequal{#1}{A}{\small Abbreviations}{}}}}}%
 ]}
 
 
-\renewcommand{\nompreamble}{The following list describes several symbols that will be later used within the body of the report.}
+\renewcommand{\nompreamble}{The following list describes several symbols and abbreviations used in the report.}
+
+%---------------------------------------------------------------------------------
+%%-------------------------------- KINEMATICS ------------------------------------
+%---------------------------------------------------------------------------------
 
 \nomenclature[R, 01]{$n$}{Number of links}
 \nomenclature[R, 02]{$N$}{Number of generalized coordinates}
@@ -17,10 +25,73 @@
 \nomenclature[R, 04]{$l$}{Link length}
 
 \nomenclature[R, 05]{$\mathbf{q}$}{Generalized coordinates}
-\nomenclature[R, 06]{$\boldsymbol{\tau}$}{Generalized torques}
+\nomenclature[R, 06]{$\phi_i$}{Joint angle of link $i$}
 
-\nomenclature[R, 07]{$\mathbf{J}$}{Jacobian matrix}
-\nomenclature[R, 08]{$\mathbf{J_c}$}{Jacobian matrix for contact point}
+\nomenclature[R, 10]{$(x_0, y_0)$}{Position of tail in base frame}
+\nomenclature[R, 11]{$(x_i, y_i)$}{Position of endpoint of link $i$ in base frame $b$}
+\nomenclature[R, 12]{$(x_{c,i}, y_{c,i})$}{Position of contact point on link $i$ in base frame $b$}
+\nomenclature[R, 13]{$d_{c,i}$}{Distance from joint $i$ to contact point on link $i$}
+\nomenclature[R, 14]{$\mathbf{T_{bi}}$}{Transformation matrix from base frame to frame of link $i$}
+\nomenclature[R, 15]{$\mathbf{T_{bci}}$}{Transformation matrix from base frame to frame of contact point on link $i$}
+\nomenclature[R, 16]{$\mathbf{v_i}$}{Velocity of endpoint of link $i$ in base frame $b$}
+\nomenclature[R, 17]{$\mathbf{v_{c,i}}$}{Velocity of contact point on link $i$ in base frame $b$}
+
+\nomenclature[R, 18]{$\mathbf{J}$}{Jacobian matrix}
+\nomenclature[R, 19]{$\mathbf{J_c}$}{Jacobian matrix for contact point}
+
+\nomenclature[R, 20]{$\theta$}{Joint angle deviation from path}
+\nomenclature[R, 21]{$r_{safety}$}{Radius around obstacle}
+
+%---------------------------------------------------------------------------------
+%%-------------------------------- DYNAMICS --------------------------------------
+%---------------------------------------------------------------------------------
+
+\nomenclature[D, 01]{$\boldsymbol{\tau}$}{Generalized torques}
+\nomenclature[D, 02]{$\boldsymbol{\tau}_m$}{Joint motor torques}
+\nomenclature[D, 03]{$\boldsymbol{\tau}_c$}{Joint torques from external forces}
+
+\nomenclature[D, 04]{$\mathbf{M}$}{Mass matrix}
+\nomenclature[D, 05]{$\mathbf{C}$}{Coriolis matrix}
+\nomenclature[D, 06]{$\mathbf{g}$}{Gravity matrix}
+
+\nomenclature[D, 07]{$L$}{Lagrangian}
+\nomenclature[D, 08]{$K, P$}{Kinetic and potential energy}
+\nomenclature[D, 09]{$I$}{Moment of inertia of rod}
+
+\nomenclature[D, 10]{$\mathbf{f}^b_{c,i}, \mathbf{f}^i_{c,i}$}{External force on link $i$ in base frame and frame of link $i$}
+\nomenclature[D, 11]{$\alpha_i$}{Angle of link $i$ relative to base frame}
+
+\nomenclature[D, 12]{$\mathbf{r}$}{End effector position in the base frame $b$}
+\nomenclature[D, 13]{$p(\mathbf{r})$}{Constraint hypersurface}
+\nomenclature[D, 14]{$\mathbf{E_F}$}{Matrix of hypersurface unit normal vectors}
+\nomenclature[D, 15]{$\mathbf{f}^b$}{End effector force on hypersurface}
+
+%---------------------------------------------------------------------------------
+%%-------------------------------- CONTROL ---------------------------------------
+%---------------------------------------------------------------------------------
 
 \nomenclature[C, 01]{$K_p$}{Proportional gain}
-\nomenclature[C, 10]{$K_d$}{Derivative gain}
+\nomenclature[C, 02]{$K_d$}{Derivative gain}
+\nomenclature[C, 03]{$\zeta$}{Damping ratio}
+\nomenclature[C, 04]{$\omega_n$}{Natural frequency}
+\nomenclature[C, 05]{$\mathbf{q_d}$}{Desired joint angles}
+\nomenclature[C, 06]{$\mathbf{q_e}$}{Joint angle errors}
+
+%---------------------------------------------------------------------------------
+%%-------------------------------- SPACES ----------------------------------------
+%---------------------------------------------------------------------------------
+
+\nomenclature[S, 01]{$\mathbb{T}$}{Task space}
+\nomenclature[S, 02]{$\mathbb{F}$}{Force space}
+\nomenclature[S, 03]{$\mathbb{M}$}{Motion space}
+\nomenclature[S, 04]{$\mathbb{C}$}{Constraint space}
+\nomenclature[S, 05]{$\mathbb{P}$}{Propulsion space}
+\nomenclature[S, 06]{$\mathbb{S}$}{Shape space}
+
+%---------------------------------------------------------------------------------
+%%-------------------------------- ABBREVIATIONS ---------------------------------
+%---------------------------------------------------------------------------------
+
+\nomenclature[A, 01]{HPFC}{Hybrid Position/Force Control}
+\nomenclature[A, 02]{OAL}{Obstacle Aided Locomotion}
+\nomenclature[A, 03]{HOAL}{Hybrid Obstacle Aided Locomotion}

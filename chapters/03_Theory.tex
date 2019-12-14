@@ -1,8 +1,6 @@
 \chapter{Background theory}\label{chapter:theory}
 
-This chapter introduces relevant theory for the snake robot specific case used in the development of the simulator. It starts off by explaining the kinematics and dynamics used for realisation of the model. Further, the computed torque control method and HPFC concept are explained. Lastly, the theory regarding simple path following and OAL are briefly presented.
-
-It is assumed that the reader is familiar with basic robot- and control theory.
+This chapter introduces relevant kinematics-, dynamics- and control theory for the snake robot specific case used in the development of the simulator. Further, the concepts of OAL and HPFC are explained to give insight into the motivation and structure of the simulator. Even though the idea of dynamical HPFC \cite{yoshikawa1987dynamic} is not applied in the project, it is presented as it is an essential part of the discussions in chapter \ref{ch:discussion}. Lastly, the methods for detecting contact with obstacles and adjusting to a predefined path are explained.
 
 
 \section{Snake Robot Kinematics} \label{sec:kin}
@@ -247,28 +245,28 @@ The generalized torques from the right side of (\ref{eq:eom}) can be split into 
     \boldsymbol{\tau} = \boldsymbol{\tau_{m}} + \boldsymbol{\tau_{c}}.
 \end{equation}
 \\
-According to Holden \cite{holden2014optimal}, the force from an obstacle acting on a link is two-fold: one normal to the link and one tangent to the link. The force tangent to the link is due to friction and will therefore be neglected in this project. The remaining normal force is preventing the link from moving into the obstacle when the robot itself is applying a force to the obstacle. The external force in the frame of link $i$ acting on link $i$ is denoted $f^i_{c,i}$ and can be written as
+According to Holden \cite{holden2014optimal}, the force from an obstacle acting on a link is two-fold: one normal to the link and one tangent to the link. The force tangent to the link is due to friction and will therefore be neglected in this project. The remaining normal force is preventing the link from moving into the obstacle when the robot itself is applying a force to the obstacle. The external force in the frame of link $i$ acting on link $i$ is denoted $\mathbf{f}^i_{c,i}$ and can be written as
 
 \begin{equation}
-    f^i_{c,i}=
+    \mathbf{f}^i_{c,i}=
     \begin{bmatrix}
         0 \\
         f^i_{c,i,y}
     \end{bmatrix}.
 \end{equation}
 \\
-The following derivations are inspired by \cite{rezapour2014path}. The force $f^i_c$ can be expressed in the base frame by using the rotation matrix from (\ref{eq:trans_rot}):
+The following derivations are inspired by \cite{rezapour2014path}. The force $\mathbf{f}^i_c$ can be expressed in the base frame by using the rotation matrix from (\ref{eq:trans_rot}):
 
 \begin{equation}
-    f^b_{c,i} = \mathbf{R}_z(\theta_i) f^i_{c,i},
+    \mathbf{f}^b_{c,i} = \mathbf{R}_z(\alpha_i) \mathbf{f}^i_{c,i},
 \end{equation}
 \\
-where $\theta_i$ is the angle of link $i$ related to the base frame $b$. It can be found by $\theta_i = \sum_{k=1}^{i} \phi_k$.
+where $\alpha_i$ is the angle of link $i$ related to the base frame $b$. It can be found by $\alpha_i = \sum_{k=1}^{i} \phi_k$.
 
 The contact Jacobian (\ref{eq:Jac_constr}) can be used to find the generalized external torque as a result of the external forces:
 
 \begin{equation}
-    \boldsymbol{\tau_c} = \sum_{i=1}^{n} \mathbf{J^T_{c,i}} f^b_{c,i}.
+    \boldsymbol{\tau_c} = \sum_{i=1}^{n} \mathbf{J}^T_{c,i} \mathbf{f}^b_{c,i}.
 \end{equation}
 
 
@@ -405,7 +403,7 @@ The following relationships are known from sections \ref{seq:constr_kin} and \re
 	\mathbf{v = J \dot{q}} \textrm{,} \quad  \  \boldsymbol{\tau} \mathbf{= J^T f}
 \end{equation}
 \\
-An important observation is that constraints due to contact with the environment are constraints due to a closed kinematic chain. \hl{Har vi closed kinematic chain???}
+An important observation is that constraints due to contact with the environment are constraints due to a closed kinematic chain. In the snake robot case there might not always be two points in contact with the environment. It is however possible to define a virtual closed kinematic chain where the robot is connected to the base with the virtual joint variables $x_0$, $y_0$ and $\phi_1$.
 A separate Jacobian has been calculated for each closed kinematic chain, as explained in \ref{subseq:constr_inst}.
 %These Jacobians are denoted $\mathbf{J_{ci}}$, where $i = 1, .., k$ is the number of independent closed kinematic chains.
 Since the motion is constrained at a contact point we have the relationships
@@ -446,7 +444,7 @@ The allowable motion is now characterized by $\mathbf{[I - J_{ci}^+ J_{ci}]}$ an
 \\
 The superscript $j$ denotes joint space, and $ap$ and $af$ stand for allowable positions and allowable forces respectively.
 
-\subsection{Multiple constraints}
+\subsection{Multiple constraints}\label{subseq:mult_contacts}
 
 If there are several contact points, projection matrices are calculated for each constraint, and the final projection matrices are found by taking the union and intersect of the different $\prescript{j}{af}{P}$ and $\prescript{j}{ap}{P}$ respectively.
 
@@ -460,59 +458,59 @@ This section briefly explains the dynamic hybrid control method based on the pap
 For describing the dynamics of the constraint manipulator, the constraints at the end effector are described by a set of constraint hypersurfaces before the equations of motion are derived. A given end effector constraint is expressed by a set of $m$ hypersurfaces:
 
 \begin{equation}\label{eq:dynhpfc0}
-    p_i(r) = 0, \quad i = 1, 2, ..., m,
+    p_i(\mathbf{r}) = 0, \quad i = 1, 2, ..., m,
 \end{equation}
 \\
-where $r$ is the end effector position in a fixed frame. Furthermore, the relation between the joint variables $q$ and the end effector position $r$ is given by
+where $\mathbf{r}$ is the end effector position in a fixed frame. Furthermore, the relation between the joint variables $\mathbf{q}$ and the end effector position $r$ is given by
 
 \begin{equation}\label{eq:dynhpfc1}
-    r = c(q).
+    \mathbf{r = c(q)}.
 \end{equation}
 \\
-Differentiating $c(q)$ with respect to $q$ gives the familiar Jacobian matrix $J$.
+Differentiating $\mathbf{c(q)}$ with respect to $\mathbf{q}$ gives the familiar Jacobian matrix $\mathbf{J}$.
 Differentiating (\ref{eq:dynhpfc1}) with respect to time gives
 
 \begin{equation}\label{eq:dynhpfc2}
-    E_F \dot{r} = 0.
+    \mathbf{E_F \dot{r}} = 0,
 \end{equation}
 \\
-Here $E_F$ consists of the unit normal vectors to the hypersurfaces (\ref{eq:dynhpfc0}).
+where $\mathbf{E_F}$ consists of the unit normal vectors to the hypersurfaces (\ref{eq:dynhpfc0}).
 
-The force exerted on the constraint surface by the end effector is denoted $f \in R^6$. Since the method assumes no friction between the surface and effector, then from the principle of virtual work $f$ satisfies
+The force exerted on the constraint surface by the end effector in the base frame $b$ is denoted $\mathbf{f}^b \in \mathbb{R}^6$. Since the method assumes no friction between the surface and effector, then from the principle of virtual work $\mathbf{f}^b$ satisfies
 
 \begin{equation}\label{eq:dynhpfc3}
-    v^T f = 0,
+    \mathbf{v}^T \mathbf{f}^b = 0,
 \end{equation}
 \\
-where $v$ is the end effector velocity $T\dot{r}$. (\ref{eq:dynhpfc2}) can thus be written
+where $\mathbf{v}$ is the end effector velocity $\mathbf{T\dot{r}}$. (\ref{eq:dynhpfc2}) can thus be written
 
 \begin{equation}\label{eq:dynhpfc4}
-    E_F T^{-1} v = 0.    
+    \mathbf{E_F T^{-1} v} = 0.    
 \end{equation}
 \\
-Eventually, the force $f$, given (\ref{eq:dynhpfc3}) and (\ref{eq:dynhpfc4}), can be written 
+Eventually, the force $\mathbf{f}^b$, given (\ref{eq:dynhpfc3}) and (\ref{eq:dynhpfc4}), can be written 
 
 \begin{equation}
-    f = E_F T^{-1} f_F,
+    \mathbf{f}^b = \mathbf{E_F T^{-1}} \mathbf{f}_F,
 \end{equation}
 \\
-where $f_F \in R^m$ is an unknown vector. It can be shown that the vector $-f_F$ takes the same value as the Lagrange multiplier $\lambda$ of the the Lagrange equations of motion for the manipulator under the following constraint:
+where $\mathbf{f}_F \in \mathbb{R}^m$ is an unknown vector. It can be shown that the vector $\mathbf{-f}_F$ takes the same value as the Lagrange multiplier $\boldsymbol{\lambda}$ of the the Lagrange equations of motion for the manipulator under the following constraint:
 
 \begin{equation}
-    \Tilde{p}_i(c(q)) = 0, \quad i = 1, 2, ..., m,
+    \Tilde{p}_i(\mathbf{c(q)}) = 0, \quad i = 1, 2, ..., m,
 \end{equation}
 \\
-where $\Tilde{p}_i(r) = p_i(r)/||dp_i(r)/dr||$.
+where $\Tilde{p}_i(\mathbf{r}) = p_i(\mathbf{r})/||dp_i(\mathbf{r})/d\mathbf{r}||$.
 
 The dynamics can now be expressed as
 
 \begin{equation}
-    M(q)\ddot{q} + h(q,\dot{q}) + V\dot{q} + g(q) = \tau_c + J^T(d\Tilde{p}/dr)^T \lambda,
+    \mathbf{M(q)\ddot{q} + C(q,\dot{q}) + g(q)} = \boldsymbol{\tau_m} + \mathbf{J^T}(d\Tilde{\mathbf{p}}/d\mathbf{r})^T \boldsymbol{\lambda},
 \end{equation}
 \\
-where $\tau_c$ is the joint driving force. The left hand side of the equation is the manipulator dynamics as given in \cite{yoshikawa1987dynamic}.
+where $\boldsymbol{\tau_m}$ is the joint driving force. The left hand side of the equation is the general manipulator dynamics.
 
-\hl{Mer/mindre stoff her? Skrive matte med fet skrift og samme notasjon som tidligere deler av kapittelet?}
+
 %---------------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------------
 
@@ -530,7 +528,7 @@ This is also sensible, as it makes no sense to attempt to apply a force in the d
 
 The directions in which the robot can apply forces to obstacles is referred to as the allowable force space $\mathbb{F}$, and the directions in which it can move freely is referred to as the allowable position or motion space $\mathbb{M}$. The idea of Raibert and Craig \cite{raibert1981hybrid} was that these spaces both make out the subspaces of a bigger task space $\mathbb{T}$, which in the snake robot case is propulsion along a predefined path. The two subspaces are orthogonal, i.e. $\mathbb{T}=\mathbb{F}\cup\mathbb{M}$, $\mathbb{F}\perp\mathbb{M}$.
 
-Stavdahl \cite{StavdahlNote} introduces a ternary decomposition of the task space based on the fact that not all force interaction between the robot and the obstacles will yield propulsion. In some robot configurations, the reaction forces from the obstacles might even lead to a lock and increasing forces between the rigid bodies that might eventually lead to the robot breaking. The reaction forces illustrated in figure \ref{fig:noprop} have no component that would push the robot in the forward direction. \hl{noe mer?}
+Stavdahl \cite{StavdahlNote} introduces a ternary decomposition of the task space based on the fact that not all force interaction between the robot and the obstacles will yield propulsion. In some robot configurations, the reaction forces from the obstacles might even lead to a lock and increasing forces between the rigid bodies that might eventually lead to the robot breaking. The reaction forces illustrated in figure \ref{fig:noprop} have no component that would push the robot in the forward direction. The robot could however bend its links and thus change its shape. Consequently it would be able to apply a torque yielding propulsion.
 
 \begin{figure}[h!]
     \centering

@@ -1,6 +1,10 @@
 \chapter{Outlook}\label{outlook}
 
-Future work.
-Path planning -> MDP/RL, MPC
-Dynamic model of everything / definition/analysis of constraints.
-Dynamic HPFC
+
+This project report has presented a MATLAB simulator developed to visualize the concepts of HPFC, OAL and the combination of the two. It has been a valuable resource for gaining more insight into the theory and existing ideas, as well as shed light on what challenges remain to be solved.
+
+The most significant challenge per now is concluded to be defining and analyzing the constraints and resulting constraint forces between the snake robot and the environment. As the method of West and Asada \cite{west1985method} is not considering the dynamics of the system, it is proposed to adapt the method of Yoshikawa \cite{yoshikawa1987dynamic} to the snake robot in future work. This would yield a dynamical model with the obstacle constraints integrated, rather than introducing them explicitly and adding them subsequently.
+
+When it comes to the path following, a clear deficiency in the applied method is the calculation of the desired angles. As mentioned in chapter \ref{ch:discussion}, solving this challenge by means of an optimization problem would most probably return more satisfying results.
+
+All experiments and calculations are based on the knowledge of the desired path. The path and obstacles are thus manually designed to achieve the presented results. However, a person will not necessarily see the most optimal path in a cluttered environment, nor is it a realistic action to define it manually in real life scenarios. Methods like model predictive control (MPC) or reinforcement learning (RL) are proposed for future work in finding the optimal path as the robot moves through the environment.

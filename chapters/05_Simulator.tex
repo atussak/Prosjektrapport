@@ -1,8 +1,8 @@
 \chapter{The simulator}\label{ch:simulator}
 
-The purpose of the simulator is to visualize the movement of a simple snake robot model progressing according to a predefined path and obstacles in the environment.
+The purpose of the simulator is to visualize the movement of a simple snake robot model progressing according to a predefined path and obstacles in the environment. Because the tested concepts are rather experimental and go in the direction of a proof-of-concept, the whole simulator is developed from scratch in MATLAB. The process of coding the simulator has also been a great resource for studying these concepts and the general theory of snake robots. The following limitations coming from this approach are presented below.
+This chapter also aims at describing how the simulator is structured and can be used, as well as explaining particular code snippets in more detail. Moreover, it provides an overview of how the mathematical background is applied.
 
-This chapter aims at describing how the simulator is structured and can be used, as well as explaining particular code snippets in more detail. Moreover, it provides an overview of how the mathematical background is applied.
 %-----------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------
 
@@ -64,7 +64,9 @@ The user definable variables are summarized in table \ref{tab:sim_userparams}.
         \hline
         \footnotesize{Link mass} & \texttt{m} & \texttt{init\char`_snake.m} & Float & $kg$\\
         \hline
-        \footnotesize{Initial robot configuration} & \texttt{q0} & \texttt{init\char`_snake.m} & Array of floats & $rad$\\
+        \footnotesize{Initial joint angles} & \texttt{q0(1:n)} & \texttt{init\char`_snake.m} & Array of floats & $rad$\\
+        \hline
+        \footnotesize{Initial position} & \texttt{q0(n+1:n+2)} & \texttt{init\char`_snake.m} & Array of floats & $rad$\\
         \hline
         \footnotesize{Number of obstacles} & \texttt{num\char`_obstacles} & \texttt{init\char`_obstacles.m} & Integer & \\
         \hline
@@ -74,7 +76,7 @@ The user definable variables are summarized in table \ref{tab:sim_userparams}.
         \hline
         \footnotesize{Proportional control gain} & \texttt{kp} & \texttt{init\char`_control.m} & Float &\\
         \hline
-        \footnotesize{Derivative control gain} & \texttt{kd} & \texttt{init\char`_control.m} & Float &\\
+        \footnotesize{Damping ratio} & \texttt{zeta} & \texttt{init\char`_control.m} & Float &\\
         \hline
         \footnotesize{Torque saturation limit} & \texttt{max\char`_tau} & \texttt{init\char`_control.m} & Float & $Nm$\\
         \hline

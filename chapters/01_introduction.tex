@@ -11,7 +11,7 @@ Snakes can also, however, utilize irregularities in a terrain. Consequently, Tra
 A relevant concept for attainment of this type of propulsion is \textit{Hybrid Position/Force Control (HPFC)}. The concept was first introduced by Raibert and Craig in 1981 \cite{raibert1981hybrid}. West and Asada \cite{west1985method} further proposed a method for the design of HPFC controllers in 1985 for constrained manipulators that are in contact with the environment at multiple points. This method aims at controlling the position and force at the manipulator joints with kinematics-based projections such that the motion at the end effector, and the force at the contacts with the environment are those required for performing the task. Yoshikawa \cite{yoshikawa1987dynamic} advanced the constraint analysis by taking the dynamics into consideration.
 
 
-Stavdahl \cite{StavdahlNote} proposed the combination of OAL and HPFC, leading to the term \textit{Hybrid Obstacle Aided Locomotion (HOAL)}. It is still a small area of research, but has a lot of potential in the area of for instance rescue robots in cluttered environments. \hl{Noe mer?}
+Stavdahl \cite{StavdahlNote} proposed the combination of OAL and HPFC, leading to the term \textit{Hybrid Obstacle Aided Locomotion (HOAL)}. It is still a small area of research, but has a lot of potential in the area of for instance rescue robots in cluttered environments. Klafstad \cite{TorjusOppg} later summarized the concept of HPFC in snake robots with special emphasis on the method of West and Asada \cite{west1985method}.
 
 \section{Scope of the project}
 The goal of this project is to establish a suitable and simplified 2-dimensional model of the idealized robot and its environment. A simulator is then to be developed based on this model and the concepts of OAL and HPFC. The purpose of the simulator is from the project task interpreted to be a platform for showing the aforementioned concepts on snake robots, rather than data generation for physical purposes.
@@ -23,11 +23,11 @@ Due to the strict time constraints of the project and somewhat vague outlines, s
 All assumptions regarding the employed model can be found in chapter \ref{ch:model_specs}.
 
 \subsection{Contributions}
-A lot of the contributions connected to the limited research environment of HOAL has been clarification of the associated formulations and theoretical aspects. Additionally, a simulator for demonstration of simple and germane HOAL-scenarios has been provided.
-
+A lot of the contributions connected to the limited research environment of HOAL has been clarification of the associated formulations and theoretical aspects. Additionally, a MATLAB simulator for demonstration of simple and germane HOAL-scenarios is provided.
+This simulator is programmed from scratch and made in the context of an experimental study. On the basis of the generalized structure of the simulator program, several of the related modules can be applied to future implementations.
 
 
 \section{Report structure}
-It is assumed that the reader is already familiar with basic physics-, robotics- and control theory. Please see \hl{blabla sources} for a more thorough explanation of the topics.
+It is assumed that the reader is already familiar with basic robotics- and control theory. Please see \cite{lynch2017modern}, \cite{lynch2017modernCompTorque}, \cite{waldron2016kinematics}, \cite{liljeback2012snake} for a more thorough explanation of the topics.
 
-The report first introduces the specifics around the mathematical model used for the snake robot, its environment and task. Further, a review of the required background theory for understanding the employed dynamical model and control of the snake robot is presented. The following part of the report is focused on the simulator and method used for achieving OAL. Significant parts of the simulator are explained in detail and a guide for usage is provided. Lastly, some experiments performed with the simulator are presented and discussed with focus on limitations and possibilities related to both the simulator and OAL in general.
+The report first introduces the specifics around the mathematical model used for the snake robot, its environment and task in chapter \ref{ch:model_specs}. Further, a review of the required background theory for understanding the employed dynamical model and control of the snake robot is presented in chapter \ref{chapter:theory}. The following part of the report, chapter \ref{ch:simulator}, is focused on the simulator and method used for achieving OAL. Significant parts of the simulator are explained in detail and a guide for usage is provided. Lastly, chapter \ref{ch:experiments} presents some experiments performed with the simulator, which are discussed in chapter \ref{ch:discussion} with focus on limitations and possibilities related to both the simulator and OAL in general.
