@@ -12,9 +12,9 @@
 \newcommand*{\getTitle}{Simulator for Obstacle Aided Locomotion in Snake Robots}
 \newcommand*{\getAuthor}{Atussa Koushan}
 \newcommand*{\getDoctype}{Specialization Project Report}
-%\newcommand*{\getSupervisor}{Supervisor}
+\newcommand*{\getSupervisor}{Øyvind Stavdahl}
 %\newcommand*{\getAdvisor}{Advisor}
-\newcommand*{\getSubmissionDate}{December 17th 2019}
+\newcommand*{\getSubmissionDate}{December 17, 2019}
 %\newcommand*{\getSubmissionLocation}{Munich}
 
 %--------- Code Highlighting Style
@@ -52,19 +52,27 @@
 \input{pages/preface}
 \input{pages/nomenclature.tex}
 
-\listoffigures{}
-\listoftables{}
-
-\printnomenclature[2cm]
 
 \microtypesetup{protrusion=false}
 \tableofcontents{}
+
+%\printacronyms[include-classes=abbrev,name=List of Abbreviations, heading=chapter] %\clearpage
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\nomname} % Add lof to toc
+\printnomenclature[2cm]\clearpage
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listtablename} % Add lot to toc
+\listoftables\clearpage
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listfigurename} % Add lof to toc
+\listoffigures\clearpage
+
+
 
 
 \microtypesetup{protrusion=true}
 
 
 \mainmatter{}
+
+
 
 
 % Chapters
@@ -82,6 +90,8 @@
 
 
 \printglossaries
-\printbibliography{}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
 
 \end{document}

@@ -2,14 +2,14 @@
 
 This chapter presents simulation scenarios chosen to demonstrate the performance and limitations of the simulator, as well show the concept of OAL.
 
-A common configuration for all experiments is given in table \ref{tab:var-allcases}. The individual configurations are presented in the respective sections.
+A common configuration for all experiments is given in Table \ref{tab:var-allcases}. The individual configurations are presented in the respective sections.
 
 \begin{table}
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Link length $[m]$& \texttt{l} & $1$ \\
          \hline
          Link mass $[kg]$& \texttt{m} & $1$ \\
@@ -29,18 +29,18 @@ A common configuration for all experiments is given in table \ref{tab:var-allcas
 
 \section{Obstacle-free environment}
 
-This section briefly demonstrates how the robot behaves without the influence of obstacles in the environment.
+This section demonstrates how the robot behaves without the influence of obstacles in the environment. Special emphasis is placed on the the path alignment performance. 
 
 \subsection{Single reference computed torque control}\label{subseq:case11}
 
-This case is to demonstrate two damping modes of the computed torque controller in a simple scenario. The configuration for the experiment is summarized in table \ref{tab:var-case-1-1}.
+This experiment is to demonstrate the two different damping modes of the computed torque controller applied in the rest of the experiments. For simplicity, a static setpoint scenario is chosen. The variable configuration for the experiment is summarized in Table \ref{tab:var-case-1-1}.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Simulation time $[s]$& \texttt{simTime} & $30$ \\
          \hline
          Simulation sample time $[s]$& \texttt{h} & $0.01$ \\
@@ -59,22 +59,24 @@ This case is to demonstrate two damping modes of the computed torque controller 
 \end{table}
 
 
-Figure \ref{fig:case1-1} shows the different damping-cases using the computed torque controller following joint angle references plotted with dashed lines. Please note that the joint angle $q_1 = \phi_1$ is not included as it is a virtual coordinate and not directly actuated.
+Figure \ref{fig:case1-1} shows the different damping-cases using the computed torque controller following joint angle references plotted with dashed lines. It should be noted that the joint angle $q_1 = \phi_1$ is not included as it is a virtual coordinate and not directly actuated.
 
-The overdamped configuration with $\zeta = 2$ is mainly used throughout the experiments, as slow motions are desired to avoid abrupt movement. The underdamped case is not relevant for this project and thus left out.
-
-The proportional gain is chosen to be $\mathbf{K_p} = 0.4 \mathbf{I}$ in all cases. The relation in (\ref{eq:control2}) with $\zeta=1$ and $\zeta=2$ yields $\mathbf{K_d} = 1.3 \mathbf{I}$ and $\mathbf{K_d} = 2.5 \mathbf{I}$ respectively.
-
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
 
-    \subfloat[Critically damped]{\includegraphics[totalheight=0.35\textheight]{figures/case-1-1/control-critdamped.pdf}}
+    \subfloat[Critically damped]{\includegraphics[totalheight=0.31\textheight]{figures/case-1-1/control-critdamped.pdf}}
 
-    \subfloat[Overdamped]{\includegraphics[totalheight=0.35\textheight]{figures/case-1-1/control-overdamped.pdf}}
+    \subfloat[Overdamped]{\includegraphics[totalheight=0.31\textheight]{figures/case-1-1/control-overdamped.pdf}}
 
     \caption{Simulation demo - computed torque control}
     \label{fig:case1-1}
 \end{figure}
+
+Because slow motions are desired to avoid abrupt movement, the overdamped configuration with $\zeta = 2$ is mainly used throughout the experiments. The underdamped case is not relevant for this project and thus left out.
+
+The proportional gain is chosen to be $\mathbf{K_p} = 0.4 \mathbf{I}$ in all cases. The relation in (\ref{eq:control2}) with $\zeta=1$ and $\zeta=2$ yields $\mathbf{K_d} = 1.3 \mathbf{I}$ and $\mathbf{K_d} = 2.5 \mathbf{I}$ respectively.
+
+
 
 
 %---------------------------------------------------------------------------------------
@@ -82,7 +84,7 @@ The proportional gain is chosen to be $\mathbf{K_p} = 0.4 \mathbf{I}$ in all cas
 
 \subsection{Path alignment}\label{subseq:case12}
 
-In this case, the robot is initialized with two different start positions before attempting to adjust to the same path (\ref{eq:path}), which consists of line segments and quadrants. The variable configurations are summarized in table \ref{tab:var-case-1-2}.
+In this case, the robot is initialized with two different start positions before attempting to adjust to the same path (\ref{eq:path}), which consists of line segments and quadrants. The start positions together with remaining variable configurations are summarized in Table \ref{tab:var-case-1-2}.
 
 \begin{equation}\label{eq:path}
     y(x) =
@@ -94,12 +96,12 @@ In this case, the robot is initialized with two different start positions before
     \end{cases}
 \end{equation}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Simulation time $[s]$& \texttt{simTime} & $10$ \\
          \hline
          Simulation sample time $[s]$& \texttt{h} & $0.001$ \\
@@ -108,7 +110,7 @@ In this case, the robot is initialized with two different start positions before
          \hline
          Number of links & \texttt{n} & $4$ \\
          \hline
-         Joint angle setpoints $[rad]$ & \texttt{q\char`_ref} & From path \\
+         Joint angle setpoints $[rad]$ & \texttt{q\char`_ref} & \makecell{Given by the path \\projection method} \\
          \hline
          Initial joint angles $[rad]$ & \texttt{q\char`_0(1:n)} & $[0, 0, 0, 0]$ \\
          \hline
@@ -121,9 +123,9 @@ In this case, the robot is initialized with two different start positions before
     \label{tab:var-case-1-2}
 \end{table}
 
-The figures \ref{fig:case1-2a} and \ref{fig:case1-2b} show the start and end position of the adjustment in a 15 second interval. The dashed lines are connections between the joints and their respective projected points on the path. The lines for the first two joints are displayed in gray because they are disregarded in the computation of the reference angles. The path projection simply regards controllable links and the position of the tip of that link. Furthermore, it is not considering that the snake robot should be stretched out along the path at all times. A repercussion of this will become clear in the experiment in \ref{subseq:case24}.
+The Figures \ref{fig:case1-2a} and \ref{fig:case1-2b} show the start and end position of the adjustment in a 15 second interval. The dashed lines are connections between the joints and their respective projected points on the path. The lines for the first two joints are displayed in gray because they are disregarded in the computation of the reference angles. The path projection method simply regards endpoints of controllable links. Furthermore, the method is not considering that the snake robot should be stretched out along the path at all times. A repercussion of this will become clear in the experiment in \ref{subseq:case24}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     
     \subfloat[$t = 0 s$]{\includegraphics[trim=4cm 3.5cm 2cm 1cm, clip=true, totalheight=0.23\textheight] {figures/case-1-2/goodgirl1.png}}
@@ -135,8 +137,8 @@ The figures \ref{fig:case1-2a} and \ref{fig:case1-2b} show the start and end pos
     \caption{Simulation demo - adjusting to path from nearby}
     \label{fig:case1-2a}
 \end{figure}
-\clearpage
-\begin{figure}[h!]
+
+\begin{figure}[H]
     \centering
     
     \subfloat[$t = 0 s$]{\includegraphics[trim=4cm 3.5cm 2cm 1cm, clip=true, totalheight=0.23\textheight] {figures/case-1-2/badgirl1.png}}
@@ -151,21 +153,65 @@ The figures \ref{fig:case1-2a} and \ref{fig:case1-2b} show the start and end pos
 
 It is evident that path adjustment relies on a start configuration close to the path to be successful as well. However, none of the simulations are able to perfectly adjust to the path. An important reason for this is that the robot cannot change the position of its center of mass without friction or push-points (obstacles) in the environment. 
 
-The plots in figure \ref{fig:case1-2-plot} show the joint angles of the controllable joints during the simulations. The reference angles are plotted with a dashed line.
+The plots in Figure \ref{fig:case1-2-plot} show the joint angles of the controllable joints during the simulations. The reference angles are plotted with a dashed line.
+From the plots it can be observed that the end effector is very close to the path and the corresponding reference angles $q_{d,4}$ are almost met in both cases. Additionally, the reference angles of link 2 and 3 wish to bend the links downward to the path. This is logical, just not completely feasible. A consequence of this is that the robot too far from the path is curling up. 
 
 \begin{figure}[H]
     \centering
     
-    \subfloat[Start at $(x_0,y_0) = (0,0)$]{\includegraphics[clip=true, totalheight=0.39\textheight]{figures/case-1-2/case12a.pdf}}
+    \subfloat[Start at $(x_0,y_0) = (0,0)$]{\includegraphics[clip=true, totalheight=0.31\textheight]{figures/case-1-2/case12a.pdf}}
 
-    \subfloat[Start at $(x_0,y_0) = (0,-1)$]{\includegraphics[clip=true, totalheight=0.39\textheight]{figures/case-1-2/case12b.pdf}}
+    \subfloat[Start at $(x_0,y_0) = (0,-1)$]{\includegraphics[clip=true, totalheight=0.31\textheight]{figures/case-1-2/case12b.pdf}}
 
     \caption{Joint angles for path adjustment with different starting configurations}
     \label{fig:case1-2-plot}
 \end{figure}
 
-From the plots it can be observed that the end effector is very close to the path and the corresponding reference angles $q_{d,4}$ are almost met in both cases. Additionally, the reference angles of link 2 and 3 wish to bend the links downward to the path. This is logical, just not completely feasible. A consequence of this is that the robot too far from the path is curling up. 
 
+%---------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+
+\section{Energy analysis}\label{sec:case3}
+
+This section demonstrates the energy difference in the robot before and after being influences by an obstacle. The experiment is performed for validity analysis of the interaction approximations.
+
+\subsection{Single obstacle interaction}\label{subseq:case3}
+For simplicity, there is only one obstacle included in this experiment. Furthermore, the robot is not set to follow any joint angle references. Instead, a step torque with magnitude $-0.1Nm$ is applied to the foremost joint for 0.5 seconds. The simulation configuration is given in Table \ref{tab:var-case-3}.
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+         \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
+         \hline \hline
+         Simulation time $[s]$& \texttt{simTime} & $5$ \\
+         \hline
+         Simulation sample time $[s]$& \texttt{h} & $0.001$ \\
+         \hline
+         Damping ratio & \texttt{zeta} & $2$ \\
+         \hline
+         Number of links & \texttt{n} & $4$ \\
+         \hline
+         Initial joint angles $[rad]$ & \texttt{q\char`_0} & $[0, 0, 0, 0]$ \\
+         \hline
+         Initial position $[m]$ & \texttt{q\char`_0(n+1:n+2)} & $[0, 0]$ \\
+         \hline
+         Number of obstacles & \texttt{num\char`_obstacles} & $1$ \\         
+         \hline
+         Obstacle position $[m]$& \texttt{obstacle\char`_coords} & $(3.5, -0.3)$ \\
+         \hline
+    \end{tabular}
+    \caption{Simulation configuration for \ref{subseq:case21}}
+    \label{tab:var-case-3}
+\end{table}
+
+The torque is chosen to make one robot link collide 
+
+
+
+
+This torque will naturally increase the energy of the robot for the time period in which it is applied. According to laws of physics, the energy level should then stay constant as long as no work is done on the robot. When the robot 
 
 
 %---------------------------------------------------------------------------------------
@@ -176,14 +222,14 @@ From the plots it can be observed that the end effector is very close to the pat
 
 \subsection{Simple propulsion}\label{subseq:case21}
 
-This scenario aims a demonstrating the concept of OAL. The snake robot is simply set to bend its front joint to $-\pi/2$ while the other joints are to remain in a stretched out configuration. The simulator variable configuration can be seen in table \ref{tab:var-case-2-1}.
+This scenario aims at demonstrating the concept of OAL. The snake robot is simply set to bend its front joint to $-\pi/2$ while the other joints are to remain in a stretched out configuration. The simulator variable configuration can be seen in Table \ref{tab:var-case-2-1}.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Simulation time $[s]$& \texttt{simTime} & $20$ \\
          \hline
          Simulation sample time $[s]$& \texttt{h} & $0.001$ \\
@@ -203,13 +249,13 @@ This scenario aims a demonstrating the concept of OAL. The snake robot is simply
          Obstacle positions $[m]$& \texttt{obstacle\char`_coords} & \makecell{$(0.8, -0.08)$ \\ $(1.6, 0.08)$ \\ $(3.3, -0.3)$} \\
          \hline
     \end{tabular}
-    \caption{Simulation configuration for case 2.1}
+    \caption{Simulation configuration for \ref{subseq:case21}}
     \label{tab:var-case-2-1}
 \end{table}
 
-The setpoints are manually set based on the knowledge that the bending link will collide with an obstacle in trying to fulfill the task. In order to obtain the desired angle, the link will apply a force to the obstacle underneath and consequently drag the whole robot body in the positive $x$ (rightward) direction. A sequence of the movement is presented in figure \ref{fig:case2-1}. The obstacles laying close to the rear links are positioned to allow the rest of the robot to stay flat. From the figure it can be seen that the robot moves away from the obstacles towards the end without pushing against anything. This is a consequence of the modeled frictionless environment.
+The setpoints are manually set based on the knowledge that the bending link will collide with an obstacle in trying to obtain the desired angle. Hence, the link will apply a force to the obstacle underneath and consequently drag the whole robot body in the positive $x$ (rightward) direction. A sequence of the movement is presented in Figure \ref{fig:case2-1}. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     
     \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.18\textheight] {figures/case-2-1/sim1.png}}
@@ -228,36 +274,50 @@ The setpoints are manually set based on the knowledge that the bending link will
     \label{fig:case2-1}
 \end{figure}
 
-From the plots in figure \ref{fig:case2-1-plot} it is clear that the collision with the lower obstacle takes place at \textasciitilde{} 3 seconds. At this point, the joint velocities are projected such that the front link moves to the edge of the obstacle. Additionally, the preceding joints experience an offset as the front joint applies a torque that influences the whole robot.
+The obstacles laying close to the rear links are positioned to allow the rest of the robot to stay flat. From the Figure it can be seen that the robot moves away from the obstacles towards the end without pushing against anything. This is a consequence of the modeled frictionless environment.
 
-A repercussion of the geometrical approximation of the contact forces becomes obvious in this experiment. The joint velocities in the emphasised time span in part (b) of figure \ref{fig:case2-1-plot} admit a twitching behaviour as a result of the velocity projections. This circumstance is discussed in chapter \ref{ch:discussion}.
+From the plots in Figure \ref{fig:case2-1-plot} it is clear that the collision with the lower obstacle takes place at approximately 3 seconds. At this point, the joint velocities are projected such that the front link does not cross the obstacle. Additionally, the preceding joints experience an offset as the front joint applies a torque that influences the whole robot.
 
-
-\begin{figure}[hbt!]
+\begin{figure}[H]
     \centering
     
-    \subfloat[]{\includegraphics[clip=true, totalheight=0.45\textheight]{figures/case-2-1/case21.pdf}}
+    \subfloat[]{\includegraphics[clip=true, totalheight=0.4\textheight]{figures/case-2-1/case21.pdf}}
 
-    \subfloat[Zoom of joint velocities in seconds 5-10]{\fbox{\includegraphics[clip=true, totalheight=0.2\textheight]{figures/case-2-1/zoom21.PNG}}}
+    \subfloat[Zoom of joint velocities in seconds 5-10]{\fbox{\includegraphics[clip=true, totalheight=0.12\textheight]{figures/case-2-1/zoom21.PNG}}}
 
-    \caption{Joint- angles and velocities for the single setpoint scenario}
+    \caption{Joint angles and velocities for the single setpoint scenario}
     \label{fig:case2-1-plot}
 \end{figure}
 
+A repercussion of the geometrical approximation of the contact forces becomes obvious in this experiment. The joint velocities in the emphasised time span in part (b) of Figure \ref{fig:case2-1-plot} admit a twitching behaviour as a result of the velocity projections. This circumstance is discussed in Chapter \ref{ch:discussion}.
 %---------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------
 
-\clearpage
 \subsection{Obstacle interaction without propulsion}\label{subseq:case22}
 
-Seeing as propulsion requires a force in the respective direction, there are scenarios where a set of joint torques are insufficient for attaining this force. This scenario aims at illustrating the case where the forces applied work against each other in the direction of propulsion and the robot is simply deformed. The variable configuration for the simulation is presented in table \ref{tab:var-case-2-2} and figure \ref{fig:case2-2} shows a sequence of the motion.
+Seeing as propulsion requires a force in the respective direction, there are scenarios where a set of joint torques are insufficient for attaining this force. This scenario aims at illustrating the case where the forces applied work against each other in the direction of propulsion and the robot is simply deformed. The variable configuration for the simulation is presented in Table \ref{tab:var-case-2-2} and Figure \ref{fig:case2-2} shows a sequence of the motion.
 
-\begin{table}[h]
+\begin{figure}[H]
+    \centering
+    
+    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight] {figures/case-2-2/2sim1.png}}
+    \hfil
+    \subfloat[$t = 3 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim2.png}}
+    
+    \subfloat[$t = 6 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim3.png}}
+    \hfil
+    \subfloat[$t = 9 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim4.png}}
+    
+    \caption{Simulation demo - no propulsion}
+    \label{fig:case2-2}
+\end{figure}
+
+\begin{table}
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Simulation time $[s]$& \texttt{simTime} & $9$ \\
          \hline
          Simulation sample time $[s]$ & \texttt{h} & $0.001$ \\
@@ -281,23 +341,9 @@ Seeing as propulsion requires a force in the respective direction, there are sce
     \label{tab:var-case-2-2}
 \end{table}
 
-\clearpage
 
 
-\begin{figure}
-    \centering
-    
-    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.18\textheight] {figures/case-2-2/2sim1.png}}
-    \hfil
-    \subfloat[$t = 3 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.18\textheight]{figures/case-2-2/2sim2.png}}
-    
-    \subfloat[$t = 6 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.18\textheight]{figures/case-2-2/2sim3.png}}
-    \hfil
-    \subfloat[$t = 9 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.18\textheight]{figures/case-2-2/2sim4.png}}
-    
-    \caption{Simulation demo - no propulsion}
-    \label{fig:case2-2}
-\end{figure}
+
 
 
 %---------------------------------------------------------------------------------------
@@ -305,38 +351,8 @@ Seeing as propulsion requires a force in the respective direction, there are sce
 
 \subsection{Unsuccessful propulsion attempt along path}\label{subseq:case24}
 
-This experiment demonstrates a case in which the simplifications made are preventing the robot from moving in the desired direction. The robot is at all times merely set to adjust itself to the path without any objective of propulsion. Just like in \ref{subseq:case21}, the obstacles blocking the robot are the factor leading to propulsion. The configuration is summarized table \ref{tab:var-case-2-4}, and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
+This experiment demonstrates a case in which the simplifications made are preventing the robot from moving in the desired direction. The robot is at all times merely set to adjust itself to the path without any objective of propulsion. Just like in \ref{subseq:case21}, the obstacles blocking the robot are the factor leading to propulsion. The configuration is summarized in Table \ref{tab:var-case-2-4}, and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
 
-\begin{table}[H]
-\centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-         \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
-         Simulation time $[s]$ & \texttt{simTime} & $60$ \\
-         \hline
-         Simulation sample time $[s]$ & \texttt{h} & $0.005$ \\
-         \hline
-         Damping ratio & \texttt{zeta} & $2$ \\
-         \hline
-         Number of links & \texttt{n} & $5$ \\
-         \hline
-         Joint angle setpoints $[rad]$& \texttt{q\char`_ref} & From path \\
-         \hline
-         Initial joint angles $[rad]$ & \texttt{q\char`_0} & $[0, 0, 0, 0, 0]$ \\
-         \hline
-         Initial position $[m]$ & \texttt{q\char`_0(n+1:n+2)} & $[-1, 0]$ \\
-         \hline
-         Number of obstacles & \texttt{num\char`_obstacles} & $3$ \\         
-         \hline
-         Obstacle positions $[m]$& \texttt{obstacle\char`_coords} & \makecell{$(0.6, -0.1)$ \\ $(1.6, 0.1)$ \\ $(3.2, -0.33)$} \\
-         \hline
-    \end{tabular}
-    \caption{Simulation configuration for \ref{subseq:case24}}
-    \label{tab:var-case-2-4}
-\end{table}
-
-The resulting problem is caused by the path projection method that disregards the positioning of the tail point. When the tail bends over an obstacle, the resulting contact force pushes the robot in the wrong direction while the front link is pushing it in the right direction. The result is that the robot gets stuck. A sequence of the movement is presented in figure \ref{fig:case2-4}.
 
 \begin{figure}[H]
     \centering
@@ -353,6 +369,38 @@ The resulting problem is caused by the path projection method that disregards th
     \label{fig:case2-4}
 \end{figure}
 
+The resulting problem is caused by the path projection method that disregards the positioning of the tail. When the tail bends over an obstacle, the resulting contact force pushes the robot in the wrong direction while the front link is pushing it in the right direction. The result is that the robot gets stuck. A sequence of the movement is presented in Figure \ref{fig:case2-4}.
+
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+         \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
+         \hline \hline
+         Simulation time $[s]$ & \texttt{simTime} & $60$ \\
+         \hline
+         Simulation sample time $[s]$ & \texttt{h} & $0.005$ \\
+         \hline
+         Damping ratio & \texttt{zeta} & $2$ \\
+         \hline
+         Number of links & \texttt{n} & $5$ \\
+         \hline
+         Joint angle setpoints $[rad]$& \texttt{q\char`_ref} & \makecell{Given by the path \\projection method}  \\
+         \hline
+         Initial joint angles $[rad]$ & \texttt{q\char`_0} & $[0, 0, 0, 0, 0]$ \\
+         \hline
+         Initial position $[m]$ & \texttt{q\char`_0(n+1:n+2)} & $[-1, 0]$ \\
+         \hline
+         Number of obstacles & \texttt{num\char`_obstacles} & $3$ \\         
+         \hline
+         Obstacle positions $[m]$& \texttt{obstacle\char`_coords} & \makecell{$(0.6, -0.1)$ \\ $(1.6, 0.1)$ \\ $(3.2, -0.33)$} \\
+         \hline
+    \end{tabular}
+    \caption{Simulation configuration for \ref{subseq:case24}}
+    \label{tab:var-case-2-4}
+\end{table}
+
 
 %---------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------
@@ -360,11 +408,11 @@ The resulting problem is caused by the path projection method that disregards th
 
 \subsection{Propulsion along path}\label{subseq:case23}
 
-This case is to illustrate how the robot can aid obstacles to propel along a defined path. Since the robot is only position controlled based on deviation from the path, the obstacles are placed in a manner that supports both the desired shape and motion. The two obstacles in the middle are to keep the rear links on the path, while the obstacle in front is placed so that the robot can push against it and pull itself forward. In order for this to happen, the obstacle has been placed slightly on the path like in previous experiments, leading to a constant deviation from the path. The robot's desire to always stay as close to the path as possible makes it push against the obstacle.
+This case is to illustrate how the robot can aid obstacles to propel along a predefined path. Since the robot is only position controlled based on deviation from the path, the obstacles are placed in a manner that supports both the desired shape and motion. The two obstacles in the middle are to keep the rear links on the path, while the obstacle in front is placed so that the robot can push against it and pull itself forward. In order for this to happen, the obstacle has been placed slightly on the path like in previous experiments, leading to a constant deviation from the path. The robot's desire to always stay as close to the path as possible makes it push against the obstacle.
 
-The leftmost obstacle is added based on the observations made in \ref{subseq:case24}, where the tail deviated from the path and caused the robot to get stuck. The link will now be pushed back to the path when in contact with this obstacle. An important point to note is that the spacing between the two leftmost obstacles contradicts assumption 10 in \ref{seq:assumptions}. The simulator is however able to handle this scenario and compute contact Jacobians and projection matrices (see \ref{subseq:HPFC}-\ref{subseq:mult_contacts}) for both contact points.
+The leftmost obstacle is added based on the observations made in \ref{subseq:case24}, where the tail deviated from the path and caused the robot to get stuck. The tail link will now be pushed back to the path when in contact with this obstacle. An important point to note is that the spacing between the two leftmost obstacles violates assumption 11 in \ref{seq:assumptions}, saying that every link is in contact with at most one obstacle. The simulator is however able to handle this scenario and compute contact Jacobians and projection matrices (see \ref{subseq:HPFC}-\ref{subseq:mult_contacts}) for both contact points.
 
-The variable configurations are presented in table \ref{tab:var-case-2-3} and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
+The variable configurations are presented in Table \ref{tab:var-case-2-3} and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
 
 
 \begin{table}
@@ -372,7 +420,7 @@ The variable configurations are presented in table \ref{tab:var-case-2-3} and th
     \begin{tabular}{|c|c|c|}
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
-         \hline
+         \hline \hline
          Simulation time $[s]$ & \texttt{simTime} & $120$ \\
          \hline
          Simulation sample time $[s]$ & \texttt{h} & $0.005$ \\
@@ -381,7 +429,7 @@ The variable configurations are presented in table \ref{tab:var-case-2-3} and th
          \hline
          Number of links & \texttt{n} & $5$ \\
          \hline
-         Joint angle setpoints $[rad]$& \texttt{q\char`_ref} & From path \\
+         Joint angle setpoints $[rad]$& \texttt{q\char`_ref} & \makecell{Given by the path \\projection method}  \\
          \hline
          Initial joint angles $[rad]$ & \texttt{q\char`_0} & $[0, 0, 0, 0, 0]$ \\
          \hline
@@ -396,7 +444,7 @@ The variable configurations are presented in table \ref{tab:var-case-2-3} and th
     \label{tab:var-case-2-3}
 \end{table}
 
-The movement is shown in figure \ref{fig:case2-3}, where it can be seen that the robot follows the path as long as it has sufficiently many obstacles to push against. At 40 seconds the robot starts moving slightly through the radius of the third obstacle. This is an effect of the projection of the joint velocities rather than angles.
+The movement is shown in Figure \ref{fig:case2-3}, where it can be seen that the robot follows the path as long as it has sufficiently many obstacles to push against. At 40 seconds the robot starts moving slightly through the radius of the third obstacle. This is an effect of the projection of the joint velocities.
 
 \begin{figure}
     \centering
