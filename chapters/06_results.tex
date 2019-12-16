@@ -174,10 +174,10 @@ From the plots it can be observed that the end effector is very close to the pat
 
 \section{Energy analysis}\label{sec:case3}
 
-This section demonstrates the energy difference in the robot before and after being influences by an obstacle. The experiment is performed for validity analysis of the interaction approximations.
+This section demonstrates the energy difference in the robot before and after being influenced by an obstacle. The experiment is performed for validity analysis of the interaction approximations.
 
 \subsection{Single obstacle interaction}\label{subseq:case3}
-For simplicity, there is only one obstacle included in this experiment. Furthermore, the robot is not set to follow any joint angle references. Instead, a step torque with magnitude $-0.1Nm$ is applied to the foremost joint for 0.5 seconds. The simulation configuration is given in Table \ref{tab:var-case-3}.
+For simplicity, only one obstacle is included in this experiment. Furthermore, the robot is not set to follow any joint angle references. Instead, a step input torque with magnitude $-0.5Nm$ is applied to the foremost joint for 0.2 seconds. The simulation configuration is given in Table \ref{tab:var-case-3}.
 
 \begin{table}[H]
 \centering
@@ -185,7 +185,7 @@ For simplicity, there is only one obstacle included in this experiment. Furtherm
         \hline
          \textbf{Description} & \textbf{Variable name} & \textbf{Value} \\
          \hline \hline
-         Simulation time $[s]$& \texttt{simTime} & $5$ \\
+         Simulation time $[s]$& \texttt{simTime} & $3$ \\
          \hline
          Simulation sample time $[s]$& \texttt{h} & $0.001$ \\
          \hline
@@ -202,16 +202,44 @@ For simplicity, there is only one obstacle included in this experiment. Furtherm
          Obstacle position $[m]$& \texttt{obstacle\char`_coords} & $(3.5, -0.3)$ \\
          \hline
     \end{tabular}
-    \caption{Simulation configuration for \ref{subseq:case21}}
+    \caption{Simulation configuration for \ref{subseq:case3}}
     \label{tab:var-case-3}
 \end{table}
 
-The torque is chosen to make one robot link collide 
+The torque is chosen to make the foremost robot link collide with the obstacle so that the resulting change in energy can be observed. The different positions of the robot to different times are illustrated in Figure \ref{fig:case3}. Furthermore, the energy level and applied torque is plotted in Figure \ref{fig:case3-plot}, where the energy is given by (\ref{eq:kinen}).
+
+
+\begin{figure}[H]
+    \centering
+    
+    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4.5cm 2cm 2.8cm, clip=true, width=0.4\textwidth] {figures/case-3/sim1.png}}
+    \hfil
+    \subfloat[$t = 1 s$]{\includegraphics[trim=2cm 4.5cm 2cm 2.8cm, clip=true, width=0.4\textwidth]{figures/case-3/sim2.png}}
+    
+    \subfloat[$t = 2 s$]{\includegraphics[trim=2cm 4.5cm 2cm 2.8cm, clip=true, width=0.4\textwidth]{figures/case-3/sim3.png}}
+    \hfil
+    \subfloat[$t = 3 s$]{\includegraphics[trim=2cm 4.5cm 2cm 2.8cm, clip=true, width=0.4\textwidth]{figures/case-3/sim4.png}}
+
+    \caption{Simulation demo - interaction with single obstacle}
+    \label{fig:case3}
+\end{figure}
 
 
 
+\begin{figure}[H]
+    \centering
+    
+    \includegraphics[width=0.8\textwidth]{figures/case-3/energy.pdf}
 
-This torque will naturally increase the energy of the robot for the time period in which it is applied. According to laws of physics, the energy level should then stay constant as long as no work is done on the robot. When the robot 
+    \caption{Energy and joint torques of robot for single collision scenario}
+    \label{fig:case3-plot}
+\end{figure}
+
+
+The motor torque will naturally increase the energy of the robot for the time period in which it is applied. According to laws of physics, the energy level should then stay constant as long as no work is done on the robot. The energy plot in Figure \ref{fig:case3-plot} confirms this, seeing as the energy stays constant between 0.2 to 1.1 seconds. When the robot then hits the obstacle, a clear change in energy is observed. The approximate time of this collision is further confirmed by the configuration of the robot at 1 seconds seen in part (b) of Figure \ref{fig:case3}.
+In reality, the robot would at this point loose energy to the obstacle. From the plot it can however be observed that the energy is increased until the robot link no longer is in contact with the obstacle.
+
+The total energy of the robot before the contact is $0.0933J$ and $0.2751J$ after the contact, meaning the energy is increased by 295\%. This outcome is discussed further in Chapter \ref{ch:discussion}.
 
 
 %---------------------------------------------------------------------------------------
