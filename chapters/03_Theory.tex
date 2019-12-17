@@ -272,7 +272,23 @@ The contact Jacobian (\ref{eq:Jac_constr}) can be used to find the generalized e
     \boldsymbol{\tau_c} = \sum_{i=1}^{n} \mathbf{J}^T_{c,i} \mathbf{f}^b_{c,i}.
 \end{equation}
 
+\subsection{Momentum}\label{subseq:momentum}
 
+The calculation of the momentum of the robot is presented as it is used in the experiment in \ref{subseq:case3} in validation of the mathematical model employed in the project.
+
+Momentum is the product of the velocity and mass of an object
+
+\begin{equation}
+    \mathbf{p} = m \mathbf{v}.
+\end{equation}
+\\
+For a snake robot with multiple links, which can be seen as a system of objects, the total momentum is the sum of the momentum for each link
+
+\begin{equation}\label{eq:momentum}
+    \mathbf{p} = \sum_{i=1}^{n}\mathbf{p}_i = \sum_{i=1}^{n}m\mathbf{v}_i.
+\end{equation}
+\\
+An important property of the momentum of a closed system, is that it is conserved despite collisions within the system. This means that if the snake robot collides with an obstacle, the momentum of the snake robot and obstacle should be unchanged. In this project, the obstacles neither have any mass nor velocity and hence no momentum. Thus, the only momentum in the employed model is that of the snake robot.
 
 %------------------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------------------
