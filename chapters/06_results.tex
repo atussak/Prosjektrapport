@@ -242,9 +242,11 @@ The motor torque will naturally increase the energy of the robot for the time pe
 In reality, the robot would at this point loose energy to the obstacle. From the plot it can however be observed that the energy is increased until the robot link no longer is in contact with the obstacle.
 The total energy of the robot before the contact is $0.0933J$ and $0.2751J$ after the contact, meaning the energy is increased by 295\%.
 
-Furthermore, the total momentum of a closed system of bodies should be conserved. Seeing as the obstacle neither has any mass nor velocity, the only body with momentum in this system is the snake robot. Hence, the momentum of the snake robot should be conserved despite the collision. However, it turns out that the momentum in x-direction increases by $1.1271kg\cdot m/s$ and the momentum in y-direction increases by $0.4519kg\cdot m/s$.
+Furthermore, 
+%the total momentum of a closed system of bodies should be conserved. Seeing as the obstacle neither has any mass nor velocity, the only body with momentum in this system is the snake robot. Hence, 
+the momentum of the snake robot should be conserved despite the collision (see \ref{subseq:momentum}). However, it turns out that the momentum in x-direction increases by $1.1271kg\cdot m/s$ and the momentum in y-direction increases by $0.4519kg\cdot m/s$, violating the well known \textit{law of conservation of momentum}.
 
-It should be noted that the robot cannot change the position of its center of mass without an external force. Therefore, even though the links obtain velocities after the torque is applied, they cancel each other out in the respective directions. The moments in the two directions are further determined by the velocities and accordingly unchanged by the torque, as seen in the momentum plot in Figure \ref{fig:case3-plot}.
+It should be noted that the robot cannot change the position of its center of mass without an external force. Therefore, even though the links obtain velocities after the torque is applied, they cancel each other out in the respective directions. The moments in the two directions are determined by the velocities and accordingly unchanged by the torque, as seen in the momentum plot in Figure \ref{fig:case3-plot}.
 
 
 %---------------------------------------------------------------------------------------
@@ -290,6 +292,9 @@ The setpoints are manually determined based on the knowledge that the bending li
 
 The obstacles laying close to the rear links are positioned to allow the rest of the robot to stay flat. From Figure \ref{fig:case2-1} it can be seen that the robot moves away from the obstacles towards the end without pushing against anything. This is a consequence of the modeled frictionless environment.
 
+From the plots in Figure \ref{fig:case2-1-plot} it is clear that the collision with the lower obstacle takes place at approximately 3 seconds. At this point, the joint velocities are projected such that the front link does not cross the obstacle. Additionally, the preceding joints experience an offset as the front joint applies a torque that influences the whole robot.
+
+A repercussion of the geometrical approximation of the contact forces becomes obvious in this experiment. The joint velocities in the emphasised time span in part (b) of Figure \ref{fig:case2-1-plot} admit a twitching behaviour as a result of the velocity projections. This circumstance is discussed in Chapter \ref{ch:discussion}.
 
 \begin{figure}[H]
     \centering
@@ -312,7 +317,7 @@ The obstacles laying close to the rear links are positioned to allow the rest of
 
 
 
-From the plots in Figure \ref{fig:case2-1-plot} it is clear that the collision with the lower obstacle takes place at approximately 3 seconds. At this point, the joint velocities are projected such that the front link does not cross the obstacle. Additionally, the preceding joints experience an offset as the front joint applies a torque that influences the whole robot.
+
 
 \begin{figure}[H]
     \centering
@@ -325,30 +330,16 @@ From the plots in Figure \ref{fig:case2-1-plot} it is clear that the collision w
     \label{fig:case2-1-plot}
 \end{figure}
 
-A repercussion of the geometrical approximation of the contact forces becomes obvious in this experiment. The joint velocities in the emphasised time span in part (b) of Figure \ref{fig:case2-1-plot} admit a twitching behaviour as a result of the velocity projections. This circumstance is discussed in Chapter \ref{ch:discussion}.
-%---------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------
 
+%---------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+\clearpage
 \subsection{Obstacle interaction without propulsion}\label{subseq:case22}
 
 Seeing as propulsion requires a force in the respective direction, there are scenarios where a set of joint torques are insufficient for attaining this force. This scenario aims at illustrating the case where the forces applied work against each other in the direction of propulsion and the robot is simply deformed. The variable configuration for the simulation is presented in Table \ref{tab:var-case-2-2} and Figure \ref{fig:case2-2} shows a sequence of the motion.
 
-\begin{figure}[H]
-    \centering
-    
-    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight] {figures/case-2-2/2sim1.png}}
-    \hfil
-    \subfloat[$t = 3 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim2.png}}
-    
-    \subfloat[$t = 6 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim3.png}}
-    \hfil
-    \subfloat[$t = 9 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim4.png}}
-    
-    \caption{Simulation demo - no propulsion}
-    \label{fig:case2-2}
-\end{figure}
 
-\begin{table}
+\begin{table}[H]
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -378,7 +369,20 @@ Seeing as propulsion requires a force in the respective direction, there are sce
 \end{table}
 
 
-
+\begin{figure}[H]
+    \centering
+    
+    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight] {figures/case-2-2/2sim1.png}}
+    \hfil
+    \subfloat[$t = 3 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim2.png}}
+    
+    \subfloat[$t = 6 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim3.png}}
+    \hfil
+    \subfloat[$t = 9 s$]{\includegraphics[trim=2cm 4cm 2cm 1.5cm, clip=true, totalheight=0.16\textheight]{figures/case-2-2/2sim4.png}}
+    
+    \caption{Simulation demo - no propulsion}
+    \label{fig:case2-2}
+\end{figure}
 
 
 
@@ -388,25 +392,6 @@ Seeing as propulsion requires a force in the respective direction, there are sce
 \subsection{Unsuccessful propulsion attempt along path}\label{subseq:case24}
 
 This experiment demonstrates a case in which the simplifications made are preventing the robot from moving in the desired direction. The robot is at all times merely set to adjust itself to the path without any objective of propulsion. Just like in \ref{subseq:case21}, the obstacles blocking the robot are the factor leading to propulsion. The configuration is summarized in Table \ref{tab:var-case-2-4}, and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
-
-
-\begin{figure}[H]
-    \centering
-    
-    \subfloat[$t = 0 s$]{\includegraphics[trim=2cm 3cm 2cm 3cm, clip=true, totalheight=0.15\textheight] {figures/case-2-4/sim1.png}}
-    \hfil
-    \subfloat[$t = 20 s$]{\includegraphics[trim=2cm 3cm 2cm 3cm, clip=true, totalheight=0.15\textheight]{figures/case-2-4/sim2.png}}
-    
-    \subfloat[$t = 40 s$]{\includegraphics[trim=2cm 3cm 2cm 3cm, clip=true, totalheight=0.15\textheight]{figures/case-2-4/sim3.png}}
-    \hfil
-    \subfloat[$t = 60 s$]{\includegraphics[trim=2cm 3cm 2cm 3cm, clip=true, totalheight=0.15\textheight]{figures/case-2-4/sim4.png}}
-
-    \caption{Simulation demo - failed propulsion along path}
-    \label{fig:case2-4}
-\end{figure}
-
-The resulting problem is caused by the path projection method that disregards the positioning of the tail. When the tail bends over an obstacle, the resulting contact force pushes the robot in the wrong direction while the front link is pushing it in the right direction. The result is that the robot gets stuck. A sequence of the movement is presented in Figure \ref{fig:case2-4}.
-
 
 \begin{table}[H]
 \centering
@@ -437,6 +422,28 @@ The resulting problem is caused by the path projection method that disregards th
     \label{tab:var-case-2-4}
 \end{table}
 
+The resulting problem is caused by the path projection method that disregards the positioning of the tail. When the tail bends over an obstacle, the resulting contact force pushes the robot in the wrong direction while the front link is pushing it in the right direction. The result is that the robot gets stuck. A sequence of the movement is presented in Figure \ref{fig:case2-4}.
+
+\begin{figure}[H]
+    \centering
+    
+    \subfloat[$t = 0 s$]{\includegraphics[trim=2.5cm 3cm 2cm 3cm, clip=true, width=0.4\textwidth] {figures/case-2-4/sim1.png}}
+    \hfil
+    \subfloat[$t = 20 s$]{\includegraphics[trim=2.5cm 3cm 2cm 3cm, clip=true, width=0.4\textwidth]{figures/case-2-4/sim2.png}}
+    
+    \subfloat[$t = 40 s$]{\includegraphics[trim=2.5cm 3cm 2cm 3cm, clip=true, width=0.4\textwidth]{figures/case-2-4/sim3.png}}
+    \hfil
+    \subfloat[$t = 60 s$]{\includegraphics[trim=2.5cm 3cm 2cm 3cm, clip=true, width=0.4\textwidth]{figures/case-2-4/sim4.png}}
+
+    \caption{Simulation demo - failed propulsion along path}
+    \label{fig:case2-4}
+\end{figure}
+
+
+
+
+
+
 
 %---------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------
@@ -451,7 +458,7 @@ The leftmost obstacle is added based on the observations made in \ref{subseq:cas
 The variable configurations are presented in Table \ref{tab:var-case-2-3} and the desired path (\ref{eq:path}) is the same one as in \ref{subseq:case12}.
 
 
-\begin{table}
+\begin{table}[H]
 \centering
     \begin{tabular}{|c|c|c|}
         \hline
